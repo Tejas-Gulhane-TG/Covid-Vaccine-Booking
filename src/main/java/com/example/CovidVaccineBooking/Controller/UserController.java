@@ -1,8 +1,7 @@
 package com.example.CovidVaccineBooking.Controller;
 
-import com.example.CovidVaccineBooking.DTO.RequestDto.UserRequestDto;
-import com.example.CovidVaccineBooking.DTO.ResponceDto.UserResponseDto;
-import com.example.CovidVaccineBooking.Model.User;
+import com.example.CovidVaccineBooking.Dto.RequestDto.UserRequestDto;
+import com.example.CovidVaccineBooking.Dto.ResponseDto.UserResponseDto;
 import com.example.CovidVaccineBooking.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,18 +12,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired UserService userService;
+    @Autowired
+    UserService userService;
+
     @PostMapping("/add")
     public ResponseEntity AddUser(@RequestBody UserRequestDto userRequestDto){
-
         UserResponseDto userResponseDto = userService.AddUser(userRequestDto);
         return new ResponseEntity(userResponseDto, HttpStatus.CREATED);
-
     }
 
-    @GetMapping("/get-by-userId/{userId}")
-    public ResponseEntity GetUserByUserId(@PathVariable String userId){
-        UserResponseDto userResponseDto = userService.GetUserByUserId(userId);
+    @GetMapping("/get-user-no/{no}")
+    public ResponseEntity GetUser(@PathVariable Integer no){
+        UserResponseDto userResponseDto = userService.GetUser(no);
         return new ResponseEntity(userResponseDto, HttpStatus.FOUND);
     }
+
 }
