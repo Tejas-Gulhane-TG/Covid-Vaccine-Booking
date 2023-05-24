@@ -7,4 +7,6 @@ public interface DoctorService {
     DoctorResponseDto AddDoctor(DoctorRequestDto doctorRequestDto);
 
     DoctorResponseDto GetDoctorByNo(Integer no);
+
+    void DeleteDoctorByNo(Integer no);
 }

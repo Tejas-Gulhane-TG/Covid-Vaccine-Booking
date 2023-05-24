@@ -28,4 +28,11 @@ public class UserServiceImpl implements UserService {
         UserResponseDto userResponseDto = UserTransformer.ResponseDto(user);
         return userResponseDto;
     }
+
+    @Override
+    public void DeleteUserById(Integer no) {
+        User user = userRepository.findByUserNo(no);
+        userRepository.deleteById(user.getId());
+        return ;
+    }
 }

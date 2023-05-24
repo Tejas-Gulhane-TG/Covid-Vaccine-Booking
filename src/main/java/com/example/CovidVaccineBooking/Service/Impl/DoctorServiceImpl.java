@@ -34,4 +34,10 @@ public class DoctorServiceImpl implements DoctorService {
 
         return doctorResponseDto;
     }
+
+    @Override
+    public void DeleteDoctorByNo(Integer no) {
+        Doctor doctor =doctorRepository.findByDoctorNo(no);
+        doctorRepository.deleteById(doctor.getId());
+    }
 }

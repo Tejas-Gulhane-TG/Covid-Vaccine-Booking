@@ -27,4 +27,10 @@ public class UserController {
         return new ResponseEntity(userResponseDto, HttpStatus.FOUND);
     }
 
+    @DeleteMapping("/delete-user-by-userNo/{no}")
+    public ResponseEntity DeleteUserById(@PathVariable Integer no){
+        userService.DeleteUserById(no);
+        return new ResponseEntity("User Deleted from Data", HttpStatus.FOUND);
+    }
+
 }

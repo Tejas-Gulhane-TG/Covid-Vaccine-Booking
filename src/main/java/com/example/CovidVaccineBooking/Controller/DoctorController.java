@@ -29,4 +29,10 @@ public class DoctorController {
         return new ResponseEntity(doctorResponseDto, HttpStatus.FOUND);
     }
 
+    @DeleteMapping("/delete-doctor-by-no/{no}")
+    public ResponseEntity DeleteDoctorByNo(@PathVariable Integer no){
+        doctorService.DeleteDoctorByNo(no);
+        return new ResponseEntity("Doctor Delete Successfully ", HttpStatus.OK);
+    }
+
 }
