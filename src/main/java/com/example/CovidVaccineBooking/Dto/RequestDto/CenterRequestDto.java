@@ -1,6 +1,6 @@
 package com.example.CovidVaccineBooking.Dto.RequestDto;
 
-import com.example.CovidVaccineBooking.Enum.Gender;
+import com.example.CovidVaccineBooking.Enum.CenterType;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,16 +11,8 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DoctorRequestDto {
-
-    int centerNo;
+public class CenterRequestDto {
     String name;
-
-    int age;
-
-    Gender gender;
-
-    long mobileNo;
-
-    String emailId;
+    String address;
+    CenterType centerType;
 }

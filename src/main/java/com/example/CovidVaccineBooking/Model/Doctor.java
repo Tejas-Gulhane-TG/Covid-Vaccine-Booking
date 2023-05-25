@@ -36,4 +36,8 @@ public class Doctor {
 
     @Column(unique = true)
     String emailId;
+
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "centerNo")
+    Center center;
 }

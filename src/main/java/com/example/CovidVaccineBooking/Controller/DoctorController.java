@@ -2,6 +2,7 @@ package com.example.CovidVaccineBooking.Controller;
 
 import com.example.CovidVaccineBooking.Dto.RequestDto.DoctorRequestDto;
 import com.example.CovidVaccineBooking.Dto.ResponseDto.DoctorResponseDto;
+import com.example.CovidVaccineBooking.Exception.CenterNotPresentException;
 import com.example.CovidVaccineBooking.Service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +20,15 @@ public class DoctorController {
 
     @PostMapping("/add")
     public ResponseEntity AddDoctor(@RequestBody DoctorRequestDto doctorRequestDto){
-        DoctorResponseDto doctorResponseDto = doctorService.AddDoctor(doctorRequestDto);
-        return new ResponseEntity(doctorResponseDto, HttpStatus.CREATED);
+
+        try {
+            DoctorResponseDto doctorResponseDto = doctorService.AddDoctor(doctorRequestDto);
+            return new ResponseEntity(doctorResponseDto,HttpStatus.CREATED);
+        }
+        catch (CenterNotPresentException e) {
+            return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @GetMapping("/Get-Doctor-By-No/{no}")
