@@ -22,4 +22,7 @@ public class UserResponseDto {
     String EmailId;
 
     Gender gender;
+
+    String Does_1_is_Taken;
+    String Does_2_is_Taken;
 }

@@ -9,6 +9,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -35,5 +38,16 @@ public class User {
     @Column(unique = true, nullable = false)
     String emailId;
 
+    Boolean does_1_Taken;
+    Boolean does_2_Taken;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Appointment> appointments = new ArrayList<>();
+
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    Does1 does1;
+
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    Does2 does2;
 
 }

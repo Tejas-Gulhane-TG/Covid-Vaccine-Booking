@@ -19,6 +19,13 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         UserResponseDto userResponseDto = UserTransformer.ResponseDto(user);
 
+        if(user.getDoes_1_Taken() ==false){
+            userResponseDto.setDoes_1_is_Taken("No");
+        }
+        if(user.getDoes_2_Taken() ==false){
+            userResponseDto.setDoes_2_is_Taken("No");
+        }
+
         return userResponseDto;
     }
 

@@ -9,6 +9,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -40,4 +43,7 @@ public class Doctor {
     @ManyToOne
     @JoinColumn(referencedColumnName = "centerNo")
     Center center;
+
+    @OneToMany(mappedBy = "doctor")
+    List<Appointment> appointments = new ArrayList<>();
 }
