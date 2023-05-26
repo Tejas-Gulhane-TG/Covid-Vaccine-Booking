@@ -22,8 +22,8 @@ public class UserController {
     }
 
     @GetMapping("/get-user-no/{no}")
-    public ResponseEntity GetUser(@PathVariable Integer no){
-        UserResponseDto userResponseDto = userService.GetUser(no);
+    public ResponseEntity GetUserById(@PathVariable Integer no){
+        UserResponseDto userResponseDto = userService.GetUserById(no);
         return new ResponseEntity(userResponseDto, HttpStatus.FOUND);
     }
 

@@ -1,13 +1,16 @@
 package com.example.CovidVaccineBooking.Model;
 
 import com.example.CovidVaccineBooking.Enum.DoesNo;
+import com.example.CovidVaccineBooking.Enum.VaccineType;
+import com.example.CovidVaccineBooking.Uuid.RandomKey;
 import com.example.CovidVaccineBooking.Uuid.RandomNo;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -21,7 +24,8 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    Integer appointmentUid = RandomNo.uid();
+    @Column(unique = true)
+    int appointmentUid;
 
     @Enumerated(EnumType.STRING)
     DoesNo doesNo;
@@ -29,6 +33,8 @@ public class Appointment {
     @CreationTimestamp
     Date dateOfAppointment;
 
+    @Enumerated(EnumType.STRING)
+    VaccineType vaccineType;
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "userNo")

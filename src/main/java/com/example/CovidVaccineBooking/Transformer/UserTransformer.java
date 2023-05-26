@@ -15,6 +15,8 @@ public class UserTransformer {
         user.setEmailId(userRequestDto.getEmailId());
         user.setGender(userRequestDto.getGender());
         user.setMobileNo(userRequestDto.getMobileNo());
+        user.setDoes_1_Taken(false);
+        user.setDoes_2_Taken(false);
 
         return user;
     }

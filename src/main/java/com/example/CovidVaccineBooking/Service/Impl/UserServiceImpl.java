@@ -15,6 +15,7 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
     @Override
     public UserResponseDto AddUser(UserRequestDto userRequestDto) {
+
         User user = UserTransformer.RequestDto(userRequestDto);
         userRepository.save(user);
         UserResponseDto userResponseDto = UserTransformer.ResponseDto(user);
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto GetUser(Integer no) {
+    public UserResponseDto GetUserById(Integer no) {
         User user = userRepository.findByUserNo(no);
         UserResponseDto userResponseDto = UserTransformer.ResponseDto(user);
         return userResponseDto;

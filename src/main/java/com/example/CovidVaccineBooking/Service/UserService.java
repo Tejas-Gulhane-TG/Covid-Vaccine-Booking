@@ -7,7 +7,7 @@ public interface UserService {
 
     UserResponseDto AddUser(UserRequestDto userRequestDto);
 
-    UserResponseDto GetUser(Integer no);
+    UserResponseDto GetUserById(Integer no);
 
     void DeleteUserById(Integer no);
 }

@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
-
 import java.util.Date;
 
 @Entity
@@ -27,7 +26,6 @@ public class Does1 {
 
     @CreationTimestamp
     Date dateOfDoes1;
-
 
     @OneToOne
     @JoinColumn(referencedColumnName = "userNo")
