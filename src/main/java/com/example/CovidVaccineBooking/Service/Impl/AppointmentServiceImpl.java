@@ -13,6 +13,8 @@ import com.example.CovidVaccineBooking.Service.AppointmentService;
 import com.example.CovidVaccineBooking.Transformer.AppointmentTransformer;
 import com.example.CovidVaccineBooking.Uuid.RandomKey;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 
@@ -28,6 +30,9 @@ public class AppointmentServiceImpl implements AppointmentService {
     Does1Repository does1Repository;
     @Autowired
     Does2Repository does2Repository;
+
+    @Autowired
+    JavaMailSender mailSender;
 
 
     @Override
@@ -90,6 +95,14 @@ public class AppointmentServiceImpl implements AppointmentService {
         userRepository.save(user);
         doctorRepository.save(doctor);
         appointmentRepository.save(appointment);
+
+        String text = " Congrats!! " + user.getName() + " Your "+ appointment.getDoesNo() +" Vaccine "+ appointment.getVaccineType()+ " has been booked!!";
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("covid19vaccinebooking@gmail.com");
+        message.setTo(user.getEmailId());
+        message.setSubject(" Appointment Booked !!!");
+        message.setText(text);
+        mailSender.send(message);
 
         return AppointmentTransformer.AppointmentToResponseDto(appointment);
 
